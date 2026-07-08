@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>صدى — تدريب الأذن الموسيقية على البيانو</title>
+<link rel="icon" type="image/svg+xml" href="assets/icon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- طبقة الخلفية المتحركة (كرات ضوئية هادئة) -->
+<div class="bg-orbs" aria-hidden="true">
+  <span class="orb orb-1"></span>
+  <span class="orb orb-2"></span>
+  <span class="orb orb-3"></span>
+</div>
+
+<div class="app">
+
+  <!-- ============ شاشة البداية ============ -->
+  <section id="start-screen" class="screen active">
+    <div class="glass-card start-card">
+      <div class="logo">
+        <div class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 100 100" class="logo-svg">
+            <circle cx="50" cy="50" r="46" class="ring ring-outer"/>
+            <circle cx="50" cy="50" r="32" class="ring ring-mid"/>
+            <circle cx="50" cy="50" r="18" class="ring ring-inner"/>
+            <path d="M42 32v27.4a9 9 0 1 0 4 7.4V45l16-3.6v19a9 9 0 1 0 4 7.4V27l-24 5.4z" class="note-glyph"/>
+          </svg>
+        </div>
+        <h1 class="logo-title">صدى</h1>
+        <p class="logo-tagline">استمع… ثم أعِد ما سمعته على البيانو</p>
+      </div>
+
+      <button id="start-btn" class="btn btn-primary btn-lg">
+        <span>ابدأ التدريب</span>
+      </button>
+
+      <div class="start-meta">
+        <div class="meta-item">
+          <span class="meta-label">أفضل دقة</span>
+          <span id="start-best" class="meta-value">—</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">أعلى مستوى</span>
+          <span id="start-level" class="meta-value">—</span>
+        </div>
+      </div>
+
+      <p class="start-hint">استخدم سماعات لتجربة استماع أفضل 🎧</p>
+    </div>
+  </section>
+
+  <!-- ============ شاشة اللعب ============ -->
+  <section id="game-screen" class="screen">
+
+    <header class="hud">
+      <div class="hud-card">
+        <span class="hud-label">المستوى</span>
+        <span id="hud-level" class="hud-value">1</span>
+      </div>
+      <div class="hud-card">
+        <span class="hud-label">الدقة</span>
+        <span id="hud-accuracy" class="hud-value">0%</span>
+      </div>
+      <div class="hud-card">
+        <span class="hud-label">المحاولات</span>
+        <span id="hud-attempts" class="hud-value">0</span>
+      </div>
+      <div class="hud-card">
+        <span class="hud-label">أفضل نتيجة</span>
+        <span id="hud-best" class="hud-value">0%</span>
+      </div>
+      <button id="end-session-btn" class="btn btn-ghost btn-sm">إنهاء الجلسة</button>
+    </header>
+
+    <div class="stage">
+      <div id="echo-indicator" class="echo-indicator mode-idle">
+        <svg class="echo-rings" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="90" class="echo-ring echo-ring-1"/>
+          <circle cx="100" cy="100" r="65" class="echo-ring echo-ring-2"/>
+          <circle cx="100" cy="100" r="40" class="echo-ring echo-ring-3"/>
+        </svg>
+        <div class="echo-center" id="echo-center">🎹</div>
+      </div>
+
+      <p id="stage-status-text" class="stage-status-text">اضغط "ابدأ" لسماع اللحن الأول</p>
+
+      <div id="progress-dots" class="progress-dots"></div>
+    </div>
+
+    <!-- لوحة النتيجة (تظهر بعد كل جولة) -->
+    <div id="result-panel" class="result-panel glass-card hidden"></div>
+
+    <div class="piano-wrap">
+      <div id="piano" class="piano" dir="ltr"></div>
+    </div>
+  </section>
+
+  <!-- ============ شاشة ملخص الجلسة ============ -->
+  <section id="summary-screen" class="screen">
+    <div class="glass-card summary-card">
+      <h2 class="summary-title">ملخص الجلسة</h2>
+      <div id="summary-stats" class="summary-stats"></div>
+      <button id="replay-btn" class="btn btn-primary btn-lg">إعادة اللعب</button>
+    </div>
+  </section>
+
+</div>
+
+<script src="https://unpkg.com/tone@14.8.49/build/Tone.js"></script>
+<script src="js/PianoSynth.js"></script>
+<script src="js/Piano.js"></script>
+<script src="js/GameEngine.js"></script>
+<script src="js/UIManager.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
